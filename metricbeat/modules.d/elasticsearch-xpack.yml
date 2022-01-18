@@ -1,0 +1,15 @@
+# Module: elasticsearch
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/7.16/metricbeat-module-elasticsearch.html
+
+- module: elasticsearch
+  xpack.enabled: true
+  period: 10s
+  hosts: ["https://elk6.westeurope.cloudapp.azure.com:9200"]
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"
+  #ssl.enabled: true
+  ssl.verification_mode: "none"
+  http.enabled: true
+  http.host: "elk6.westeurope.cloudapp.azure.com"
+  #ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
+

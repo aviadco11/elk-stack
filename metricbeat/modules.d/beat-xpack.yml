@@ -1,0 +1,17 @@
+# Module: beat
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/7.16/metricbeat-module-beat.html
+
+- module: beat
+  xpack.enabled: true
+  metricsets:
+    - stats
+    - state
+  period: 10s
+  hosts: ["http://localhost:5066","http://localhost:5067"]
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"
+  ssl.verification_mode: "none"
+  http.enabled: true
+  http.host: localhost
+  #ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
+  http.port: 5067
