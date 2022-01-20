@@ -159,7 +159,7 @@ monitoring.enabled: false
 http.enabled: true
 http.host: localhost
 http.port: 5067
-# here we write the cluster uuid where beats is running
+#monitoring.cluster_uuid: "5p4sQBp2SjO2TOI5lPGigw"
 monitoring.cluster_uuid: "HMW4kvNCTYaqntBxKkxv9w"
 
 # Sets the UUID of the Elasticsearch cluster under which monitoring data for this

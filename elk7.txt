@@ -1,0 +1,46 @@
+elk7.westeurope.cloudapp.azure.com
+*.westeurope.cloudapp.azure.com
+
+
+
+Changed password for user apm_system
+PASSWORD apm_system = EzwQTeC8e3ey0dFQBL4x
+
+Changed password for user kibana_system
+PASSWORD kibana_system = nRjOhicdTpn0pzCWnAWO
+
+Changed password for user kibana
+PASSWORD kibana = nRjOhicdTpn0pzCWnAWO
+
+Changed password for user logstash_system
+PASSWORD logstash_system = VZKO51gYgmWICak6rZfH
+
+Changed password for user beats_system
+PASSWORD beats_system = LswVOuzB9Ua98DyfxaJ3
+
+Changed password for user remote_monitoring_user
+PASSWORD remote_monitoring_user = 69CPB77mDMQqYRoHakmx
+
+Changed password for user elastic
+PASSWORD elastic = BHf3ABYRUWWYFNmGu6BE
+
+
+
+{
+  "name" : "elk7.westeurope.cloudapp.azure.com",
+  "cluster_name" : "my-mon",
+  "cluster_uuid" : "5p4sQBp2SjO2TOI5lPGigw",
+  "version" : {
+    "number" : "7.16.2",
+    "build_flavor" : "default",
+    "build_type" : "tar",
+    "build_hash" : "2b937c44140b6559905130a8650c64dbd0879cfb",
+    "build_date" : "2021-12-18T19:42:46.604893745Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.10.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+

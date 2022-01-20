@@ -10,5 +10,5 @@
   password: "uxnm3t5LHnkrUv2y7ou4"
   http.enabled: true
   http.hosts: "elk6.westeurope.cloudapp.azure.com"
-  ssl.verification_mode: "none"
-  #ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
+  ssl.verification_mode: "certificate"
+  ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]

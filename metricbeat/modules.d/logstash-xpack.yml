@@ -1,0 +1,14 @@
+# Module: logstash
+# Docs: https://www.elastic.co/guide/en/beats/metricbeat/7.16/metricbeat-module-logstash.html
+
+- module: logstash
+  metricsets: ["node", "node_stats"]
+  xpack.enabled: true
+  period: 10s
+  hosts: ["http://localhost:9600"]
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"
+  ssl.verification_mode: "none"
+  http.port: 9600
+  http.enabled: true
+  http.host: localhost

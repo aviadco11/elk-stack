@@ -8,8 +8,8 @@
   username: "elastic"
   password: "dfLNU9ccMrqwxo365apf"
   #ssl.enabled: true
-  ssl.verification_mode: "none"
+  ssl.verification_mode: "certificate"
   http.enabled: true
   http.host: "elk6.westeurope.cloudapp.azure.com"
-  #ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
+  ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
 
