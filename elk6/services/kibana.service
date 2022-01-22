@@ -1,0 +1,15 @@
+# locate in /etc/systemd/system/kiaban.service
+[Unit]
+Description=kibana
+
+[Service]
+Type=simple
+User=aviadc
+Group=aviadc
+
+ExecStart=/opt/kibana-7.16.2-linux-x86_64/bin/kibana "-c /opt/kibana-7.16.2-linux-x86_64/config/kibana.yml"
+Restart=always
+WorkinDirectory=/
+
+[Install]
+WantedBy=multi-user.target
