@@ -1,6 +1,7 @@
-this repo include all need to build dedicated cluster monitor for elk cluster.
-elk6 is prod elk cluster
-elk7 is monitoring elk cluster
+# build dedicated elasticsearch cluster monitoring for elk stack cluster prod env.
+
+elk6 is prod env elasticsearch cluster.
+elk7 is dedicated monitoring elasticsearch cluster.
 
 elk6 include this components : 
 - elasticsearch
