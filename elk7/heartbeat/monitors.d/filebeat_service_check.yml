@@ -1,0 +1,8 @@
+- type: http
+  id: service-filebeat-status
+  name: FileBeat Status
+  hosts: ["http://elk6.westeurope.cloudapp.azure.com:5066"]
+  check.response.status: [200]
+  schedule: '@every 50s'
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"

@@ -1,0 +1,11 @@
+- type: http
+  id: service-elasticsearch-status
+  name: Elasticsearch Status
+  hosts: ["https://elk6.westeurope.cloudapp.azure.com:9200"]
+  check.response.status: [200]
+  schedule: '@every 10s'
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"
+  ssl:
+    certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
+    supported_protocols: ["TLSv1.0", "TLSv1.1", "TLSv1.2"]

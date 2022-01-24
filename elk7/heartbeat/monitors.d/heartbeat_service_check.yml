@@ -1,0 +1,8 @@
+- type: http
+  id: service-heartbeat-status
+  name: HeartBeat Status
+  hosts: ["http://elk7.westeurope.cloudapp.azure.com:5068"]
+  check.response.status: [200]
+  schedule: '@every 50s'
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"

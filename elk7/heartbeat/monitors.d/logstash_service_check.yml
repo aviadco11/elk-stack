@@ -1,0 +1,8 @@
+- type: http
+  id: service-logstash-status
+  name: Logstash Status
+  hosts: ["http://elk6.westeurope.cloudapp.azure.com:9600"]
+  check.response.status: [200]
+  schedule: '@every 10s'
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"

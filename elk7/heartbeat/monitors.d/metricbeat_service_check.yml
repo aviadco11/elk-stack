@@ -1,0 +1,8 @@
+- type: http
+  id: service-metricbeat-status
+  name: metricBeat Status
+  hosts: ["http://elk6.westeurope.cloudapp.azure.com:5067"]
+  check.response.status: [200]
+  schedule: '@every 50s'
+  username: "elastic"
+  password: "dfLNU9ccMrqwxo365apf"
