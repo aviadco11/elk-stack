@@ -5,10 +5,10 @@
   metricsets: ["node", "node_stats"]
   xpack.enabled: true
   period: 10s
-  hosts: ["http://localhost:9600"]
+  hosts: ["http://elk6.westeurope.cloudapp.azure.com:9600"]
   username: "elastic"
   password: "dfLNU9ccMrqwxo365apf"
   ssl.verification_mode: "none"
   http.port: 9600
   http.enabled: true
-  http.host: localhost
+  http.host: 10.0.0.16, elk6.westeurope.cloudapp.azure.com

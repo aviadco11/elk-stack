@@ -2,6 +2,7 @@ elk6.westeurope.cloudapp.azure.com
 *.westeurope.cloudapp.azure.com
 /opt/kibana-7.16.2-linux-x86_64/config
 
+private ip : 10.0.0.16
 
 ----------------------------------------------------
 

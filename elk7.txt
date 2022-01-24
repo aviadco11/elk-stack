@@ -1,7 +1,7 @@
 elk7.westeurope.cloudapp.azure.com
 *.westeurope.cloudapp.azure.com
 
-
+private ip : 10.0.0.17
 
 Changed password for user apm_system
 PASSWORD apm_system = EzwQTeC8e3ey0dFQBL4x

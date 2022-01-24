@@ -7,11 +7,11 @@
     - stats
     - state
   period: 10s
-  hosts: ["http://localhost:5066","http://localhost:5067"]
+  hosts: ["http://10.0.0.16:5066","http://10.0.0.16:5067","http://10.0.0.17:5068"]
   username: "elastic"
   password: "dfLNU9ccMrqwxo365apf"
-  ssl.verification_mode: "none"
+  #ssl.verification_mode: "none"
   http.enabled: true
-  http.host: localhost
+  http.host: 10.0.0.16,10.0.0.17
   #ssl.certificate_authorities: ["/opt/kibana-7.16.2-linux-x86_64/config/elasticsearch-ca.pem"]
-  http.port: 5067
+  #http.port: 5067

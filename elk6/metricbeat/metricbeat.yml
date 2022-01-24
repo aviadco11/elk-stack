@@ -155,11 +155,10 @@ logging.files:
 # reporting is disabled by default.
 
 # Set to true to enable the monitoring reporter.
-monitoring.enabled: false
+#monitoring.enabled: true
 http.enabled: true
-http.host: localhost
+http.host: 10.0.0.16
 http.port: 5067
-#monitoring.cluster_uuid: "5p4sQBp2SjO2TOI5lPGigw"
 monitoring.cluster_uuid: "HMW4kvNCTYaqntBxKkxv9w"
 
 # Sets the UUID of the Elasticsearch cluster under which monitoring data for this

@@ -1,17 +1,16 @@
-# locate in /etc/systemd/system/logstash.service
 [Unit]
 Description=logstash
 
 [Service]
 Type=simple
-User=logstash
-Group=logstash
+User=aviadc
+Group=aviadc
 # Load env vars from /etc/default/ and /etc/sysconfig/ if they exist.
 # Prefixing the path with '-' makes it try to load, but if the file doesn't
 # exist, it continues onward.
 EnvironmentFile=-/etc/default/logstash
 EnvironmentFile=-/etc/sysconfig/logstash
-ExecStart=/usr/share/logstash/bin/logstash "--path.settings" "/etc/logstash"
+ExecStart=sudo /usr/share/logstash/bin/logstash "--path.settings" "/etc/logstash"
 Restart=always
 WorkingDirectory=/
 Nice=19
