@@ -10,6 +10,9 @@ GET _cat/shards?v&s=shard
 # get list of indices
 GET _cat/indices?v&h=health,status,index,pri,rep,docs,count,store,size,pti.store.size
 
+# get list and more details of indices
+GET _cat/indices?v&s=index
+
 # information about specific shard
 GET _cat/shards/alert-idx?v&s=shard
 
@@ -50,7 +53,8 @@ PUT _template/template_3
 {
   "index_patterns": ["ze*", "zvbar*"],
   "settings": {
-    "number_of_shards": 3
+    "number_of_shards": 3,
+    "number_of_replicas": 1
   },
   "mappings": {
       "properties": {
@@ -106,6 +110,17 @@ POST _aliases
       }
     }
   ]
+}
+
+# reindex from src to destination
+POST _reindex
+{
+  "source": {
+    "index": "user-000001"
+  },
+  "dest": {
+    "index": "user-000002"
+  }
 }
 
 # get document by id using alias
@@ -175,3 +190,5 @@ POST /people1/_doc/1
   "sssd": "dsfd"
 }
 
+# delete index
+DELETE my-index-000001
