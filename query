@@ -1,0 +1,177 @@
+# get cluster health status
+GET _cluster/health?pretty
+
+# get list of nodes
+GET _cat/nodes?v
+
+# get list of shards
+GET _cat/shards?v&s=shard
+
+# get list of indices
+GET _cat/indices?v&h=health,status,index,pri,rep,docs,count,store,size,pti.store.size
+
+# information about specific shard
+GET _cat/shards/alert-idx?v&s=shard
+
+# create index with alias, mapping and settings
+PUT orders-2012-10-01
+{
+  "aliases": {
+    "orders": {
+      "is_write_index": true  
+    }
+  },
+  "settings": {
+    "index":{
+      "number_of_shards":5,
+      "number_of_replicas":1
+    }
+  },
+  "mapping": {
+    "properties": {
+      "host_name": {
+        "type": "keyword"
+      },
+      "created_at": {
+        "type": "date",
+        "format": "EEE MMM dd HH:mm:ss Z yyyy"
+      }
+    }
+  }
+}
+
+
+GET _cat/shards/alert-idx?v&s=shard
+
+
+
+# create template
+PUT _template/template_3
+{
+  "index_patterns": ["ze*", "zvbar*"],
+  "settings": {
+    "number_of_shards": 3
+  },
+  "mappings": {
+      "properties": {
+        "host_name": {
+          "type": "keyword"
+        },
+        "namw": {
+          "type": "keyword"
+        }
+      }
+  }
+}
+
+# create document
+POST /zeve1/_doc/1
+{
+  "host_name": "fdsf",
+  "namw": "dsfd"
+}
+
+# get index settings
+GET /zeve1/_settings
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# search index people1
+GET /people1/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# get document by id
+GET /people1/_doc/k5z2i34BRPzyx7egVn3-
+
+# get index mapping
+GET /people1/_mapping
+
+# add alias to index
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "people1",
+        "alias": "my-alias"
+      }
+    }
+  ]
+}
+
+# get document by id using alias
+GET /my-alias/_doc/k5z2i34BRPzyx7egVn3-
+
+# get template information
+GET /_template/template_2
+
+# get all index template
+GET /_index_template
+
+# this command show disk usage for each field
+POST /people1/_disk_usage?run_expensive_tasks=true
+
+
+POST .monitoring-logstash-*/_search
+{
+  "size": 0,
+  "aggs": {
+    "clusters": {
+      "terms": {
+        "field": "cluster_uuid",
+        "size": 10
+      },
+      "aggs": {
+        "types": {
+          "terms": {
+            "field": "type",
+            "size": 10
+          },
+          "aggs": {
+            "first": {
+              "min": {
+                "field": "timestamp"
+              }
+            },
+            "last": {
+              "max": {
+                "field": "timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+GET _cat/indices/.monitoring-*
+
+POST my-index-000001/_doc/
+{
+  "@timestamp": "2099-11-15T13:12:00",
+  "message": "GET /search HTTP/1.1 200 1070000",
+  "user": {
+    "id": "kimchy"
+  }
+}
+
+GET _cat/indices/people1
+
+POST /people1/_doc/1
+{
+  "name": "fdsf",
+  "sssd": "dsfd"
+}
+
