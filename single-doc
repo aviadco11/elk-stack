@@ -1,0 +1,116 @@
+# create index with id auto
+POST my-index-000001/_doc/
+{
+  "@timestamp": "2099-11-15T13:12:00",
+  "message": "GET /search HTTP/1.1 200 1070000",
+  "user": {
+    "id": "kimchy"
+  }
+}
+
+# Insert a JSON document into the my-index-000001 index with an _id of 1:
+PUT my-index-000004/_doc/1
+{
+  "@timestamp": "2099-11-15T13:12:00",
+  "message": "GET /search HTTP/1.1 200 1070000",
+  "user": {
+    "id": "kimchy11"
+  }
+}
+
+# use _create to insure you insert new value id
+# and not update any document exists
+PUT my-index-000001/_create/1
+{
+  "@timestamp": "2099-11-15T13:12:00",
+  "message": "GET /search HTTP/1.1 200 1070000",
+  "user": {
+    "id": "kimchy"
+  }
+}
+
+# Retrieves the specified JSON document from an index
+GET my-index-000001/_doc/1
+
+
+# Retrieve document by id without _source
+GET my-index-000001/_doc/1?_source=false
+
+# Retrieve document with specific fields
+GET my-index-000001/_doc/1?_source_includes=*.id&_source_excludes=entities
+
+# another approch to get specific fields
+GET my-index-000001/_doc/1?_source=*.id
+
+# Check to see if a document with the _id 0 exists
+HEAD my-index-000001/_doc/1
+
+# get just the _source field of a document
+GET my-index-000001/_source/1
+
+# get count to index
+GET  my-index-000001/_count
+
+# show index content
+GET my-index-000001/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# Removes a JSON document from the specified index
+DELETE /my-index-000001/_doc/1
+
+# Deletes documents that match the specified query
+POST /my-index-000001/_delete_by_query
+{
+  "query": {
+    "match": {
+      "user.id": "elkbee"
+    }
+  }
+}
+
+# create a index for show update on this index
+PUT test/_doc/1
+{
+  "counter" : 1,
+  "tags" : ["red"]
+}
+
+# Updates a document using the specified script.
+POST test/_update/1
+{
+  "script" : {
+    "source": "ctx._source.counter += params.count",
+    "lang": "painless",
+    "params" : {
+      "count" : 4
+    }
+  }
+}
+
+# update - add new field to specific document
+POST test/_update/1
+{
+  "script" : "ctx._source.new_field = 'value_of_new_field'"
+}
+
+# update - remove field from specific document
+POST test/_update/1
+{
+  "script": "ctx._source['my-object'].remove('my-subfield')"
+}
+
+# update with condition
+POST test/_update/1
+{
+  "script": {
+    "source": "if (ctx._source.tags.contains(params.tag)) { ctx.op = 'delete' } else { ctx.op = 'none' }",
+    "lang": "painless",
+    "params": {
+      "tag": "green"
+    }
+  }
+}

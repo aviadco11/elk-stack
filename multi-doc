@@ -1,0 +1,78 @@
+# Retrieves multiple JSON documents by ID
+GET /_mget
+{
+  "docs": [
+    {
+      "_index": "my-index-000001",
+      "_id": "1"
+    },
+    {
+      "_index": "my-index-000001",
+      "_id": "2"
+    }
+  ]
+}
+
+# Retrieves multiple JSON documents by ID simpler
+GET /my-index-000001/_mget
+{
+  "ids" : ["1", "2"]
+}
+
+
+# use multiget with filter fields
+GET /_mget
+{
+  "docs": [
+    {
+      "_index": "test",
+      "_type": "_doc",
+      "_id": "1",
+      "_source": false
+    },
+    {
+      "_index": "test",
+      "_type": "_doc",
+      "_id": "2",
+      "_source": [ "field3", "field4" ]
+    },
+    {
+      "_index": "test",
+      "_type": "_doc",
+      "_id": "3",
+      "_source": {
+        "include": [ "user" ],
+        "exclude": [ "user.location" ]
+      }
+    }
+  ]
+}
+
+
+
+# Buld API - Performs multiple indexing or delete operations in a single API call. This reduces overhead and can greatly increase indexing speed.
+
+POST _bulk
+{ "index" : { "_index" : "test", "_id" : "1" } }
+{ "field1" : "value1" }
+{ "delete" : { "_index" : "test", "_id" : "2" } }
+{ "create" : { "_index" : "test", "_id" : "3" } }
+{ "field1" : "value3" }
+{ "update" : {"_id" : "1", "_index" : "test"} }
+{ "doc" : {"field2" : "value2"} }
+
+
+
+# add documents in bulk
+POST _bulk
+{ "index":{ "_index" : "test234", "_id" : "1" } }
+{ "name":"john doe","age":25 }
+{ "index":{ "_index" : "test234", "_id" : "2" } }
+{ "name":"mary smith","age":32 }
+
+# add documents to index without specifigc id  in bulk
+POST test2114/_doc/_bulk
+{ "index":{} }
+{ "name":"john doe","age":25 }
+{ "index":{} }
+{ "name":"mary smith","age":32 }

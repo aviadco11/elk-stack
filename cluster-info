@@ -1,0 +1,48 @@
+
+# get cluster health status
+GET _cluster/health?pretty
+
+
+#getting the cluster health at the shards level specific index:
+GET /_cluster/health/my-index-000001?level=shards
+
+# get list of nodes
+GET _cat/nodes?v
+
+# get list of shards
+GET _cat/shards?v&s=shard
+
+# get list of indices
+GET _cat/indices?v&h=health,status,index,pri,rep,docs,count,store,size,pti.store.size
+
+# get list and more details of indices
+GET _cat/indices?v&s=index
+
+# return indices statistics
+GET /_nodes/stats/indices
+
+
+# information about specific shard
+GET _cat/shards/people?v&s=shard
+
+# Provides an explanation for a shard’s current allocation
+GET _cluster/allocation/explain
+{
+  "index": "test2114",
+  "shard": 0,
+  "primary": true,
+  "current_node": "elk7.westeurope.cloudapp.azure.com"
+}
+
+# If you call the API with no arguments, Elasticsearch retrieves an allocation explanation for an arbitrary unassigned primary or replica shard
+GET _cluster/allocation/explain
+
+# Returns cluster-wide settings.
+GET /_cluster/settings
+
+
+# The Cluster Stats API allows to retrieve statistics from a cluster wide perspective. The API returns basic index metrics (shard numbers, store size, memory usage) and information about the current nodes that form the cluster (number, roles, os, jvm versions, memory usage, cpu and installed plugins).
+GET /_cluster/stats?human&pretty
+
+# return just process
+GET /_nodes/process

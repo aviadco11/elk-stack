@@ -1,0 +1,47 @@
+
+# define index settings without mapping
+PUT twitter
+{
+    "settings" : {
+        "number_of_shards" : 3,
+        "number_of_replicas" : 2
+    }
+}
+
+# define a new index with following settings and mappings
+PUT testd
+{
+    "settings" : {
+        "number_of_shards" : 1
+    },
+    "mappings" : {
+            "properties" : {
+                "field1" : { "type" : "text" }
+        }
+    }
+}
+
+# Use the delete index API to delete an existing index.
+DELETE /test11112
+
+# create index template
+PUT /_index_template/template_1
+{
+  "index_patterns" : ["te*"],
+  "priority" : 1,
+  "template": {
+    "settings" : {
+      "number_of_shards" : 2
+    }
+  }
+}
+
+
+# Delete index template
+DELETE /_index_template/my-index-template
+
+# add alias to index test
+PUT test/_alias/my-alias
+
+# Analyzes disk usage of index
+POST /twitter/_disk_usage?run_expensive_tasks=true
