@@ -46,3 +46,17 @@ GET /_cluster/stats?human&pretty
 
 # return just process
 GET /_nodes/process
+
+# get count all index by dates
+GET _cat/count
+{ 
+  "query": { 
+    "range": { 
+      "@timestamp": { 
+        "gte": "now-5w",
+        "lt": "now-1w"
+      } 
+    } 
+  } 
+}
+
