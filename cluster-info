@@ -60,3 +60,9 @@ GET _cat/count
   } 
 }
 
+# change mappint in all index
+PUT /*/_mapping
+{
+"dynamic": "strict"
+  }
+  
