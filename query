@@ -44,6 +44,13 @@ PUT orders-2012-10-01
 }
 
 
+# change all index mapping settings
+PUT /*/_mapping
+{
+"dynamic": "strict"
+  }
+  
+  
 GET _cat/shards/alert-idx?v&s=shard
 
 
