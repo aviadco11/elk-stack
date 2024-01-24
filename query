@@ -199,8 +199,7 @@ POST /people1/_doc/1
 
 # delete index
 DELETE my-index-000001
-
--- cluster info
+# cluster info
 GET /_cluster/health?pretty
 GET /_cluster/health?wait_for_status=yellow&timeout=50s
 GET _cat/health?v
@@ -220,26 +219,26 @@ GET /_cat/segments?v
 GET _cluster/allocation/explain?pretty
 
 
--- Get unassigned shards : 
+# Get unassigned shards : 
 GET _cat/shards?h=index,shard,prirep,state,unassigned.reason&s=index&state=UNASSIGNED
--- Get unassigned shards with reason : 
+# Get unassigned shards with reason : 
 GET _cat/shards?v=true&h=index,shard,prirep,state,node,unassigned.reason&s=state
--- Get unassigned shards with reason for specific index: 
+# Get unassigned shards with reason for specific index: 
 GET _cat/shards/.ds-cos-endpoint-2023.08.25-000088?v=true&h=index,shard,prirep,state,node,unassigned.reason&s=state
 
--- tasks in elastic
+# tasks in elastic
 GET _cat/tasks?v
 GET _tasks/oenUCsllsadwqdwqc:59588341
 
--- flush to disk
+# flush to disk
 POST _flush/synced
 
 
 
--- get cluster settings
+# get cluster settings
 GET /_cluster/settings?include_defaults=true&flat_settings=true
 
--- Updating cluster settings
+# Updating cluster settings
 PUT /_cluster/settings
 {
     "transient" : {
@@ -247,33 +246,33 @@ PUT /_cluster/settings
     }
 }
 
--- cluster health : index level 
+# cluster health : index level 
 GET /_cluster/health?level=indices&pretty
 GET _cat/indices?v
 GET _cat/indices/index-name?v
--- show only index name
+# show only index name
 GET _cat/indices/index-name?v&h=index
 GET _cat/indices/indexname*?v&s=index:desc&h=docs.count
 GET _cat/indices/indexname*?v&s=index:desc&h=index,docs.count
 GET _cat/indices/test?h=*&format=json
 
--- cluster health : shards level 
+# cluster health : shards level 
 GET /_cluster/health?level=shards&pretty
--- get shards per index
+# get shards per index
 GET _cat/shards/indexname?v
 
--- get shards allocation per node
+# get shards allocation per node
 GET _cat/allocation?v
 
 
--- get recovery status
+# get recovery status
 GET _cat/recovery?v
 
--- List All Indices
+# List All Indices
 GET /_cat/indices?v
 GET /appindex1/_count
 
--- Create an Index with setting and mapping
+# Create an Index with setting and mapping
 PUT /index_name
 {
   "settings": {
@@ -287,14 +286,14 @@ PUT /index_name
 }
 
 
--- change number of replicas
+# change number of replicas
 PUT /indextest/_Settings
 {
 "settings": {
 "index.number_of_replicas" : "3"      }
 }
 
--- Make index read_only : 
+# Make index read_only : 
 PUT /indextest/_Settings
 {
 "settings": {
@@ -303,7 +302,7 @@ PUT /indextest/_Settings
 }
 
 
--- change number of shards 
+# change number of shards 
 POST /srcindextest/_split/target_index
 {
 "settings": {
@@ -311,7 +310,7 @@ POST /srcindextest/_split/target_index
        }
 }
 
--- another example of Create an index with settings and mapping
+# another example of Create an index with settings and mapping
 PUT /my_index_name
 {
   "settings": {
@@ -331,7 +330,7 @@ PUT /my_index_name
   }
 }
 
--- Create a document (auto-generated ID)
+# Create a document (auto-generated ID)
 POST /my_index_name/_doc
 {
   "title": "Elastic is funny",
@@ -340,7 +339,7 @@ POST /my_index_name/_doc
   ]
 }
 
--- Create or update a document
+# Create or update a document
 PUT /my_index_name/_doc/12
 {
   "title": "Elastic is funny",
@@ -349,25 +348,25 @@ PUT /my_index_name/_doc/12
   ]
 }
 
--- Delete a document
+# Delete a document
 DELETE /my_index_name/_doc/12
 
--- Open and close indexes
+# Open and close indexes
 POST /my_index_name/_close
 POST /my_index_name/_open
 
 
 
--- Get the mapping and the settings
+# Get the mapping and the settings
 GET /my_index_name
 GET /my_index_name/_mapping
 GET /my_index_name/_settings
 
 
--- Delete an Index
+# Delete an Index
 DELETE /index_name
 
--- Search match query
+# Search match query
 GET /index_name/_search
 {
   "query": {
@@ -378,7 +377,7 @@ GET /index_name/_search
 }
 
 
--- Remove and create aliases
+# Remove and create aliases
 POST /_aliases
 {
   "actions": [
@@ -398,7 +397,7 @@ POST /_aliases
   ]
 }
 
--- add alias to indices by pattern : 
+# add alias to indices by pattern : 
 POST /_aliases
 {
 "actions": [
@@ -411,12 +410,12 @@ POST /_aliases
  ]
 }
 
--- List aliases
+# List aliases
 GET /_aliases
 GET /my_index_name/_alias/*
 
 
--- Indices monitoring
+# Indices monitoring
 GET /my_index_name/_stats
 GET /my_index_name/_segments
 GET /my_index_name/_recovery?pretty&human
@@ -424,13 +423,13 @@ GET /_cat/recovery?active_only=true&v&h=index,time,source_node,target_node,bytes
 GET /_cat/recovery?active_only=true
 
 
--- Indices manage
+# Indices manage
 POST /my_index_name/_cache/clear
 POST /my_index_name/_refresh
 POST /my_index_name/_flush
 POST /my_index_name/_forcemerge
 
--- ilm operation
+# ilm operation
 POST _ilm/stop 
 POST _ilm/start 
 GET _ilm/status
@@ -444,7 +443,7 @@ PUT /index_name/_settings
        }
 }
 
--- move ILM from HOT to frozen-tier :
+# move ILM from HOT to frozen-tier :
 POST ilm/move/index_name
 {
 "current_step": {
@@ -457,22 +456,22 @@ POST ilm/move/index_name
  }
 }
 
--- Reroute Data betweem data tier : 
+# Reroute Data betweem data tier : 
 PUT indexname/_settings
 {
 "index.routing.allocation.include._tier_preference": "data_cold,data_warm,data_hot"
 }
 
--- stop and start and status slm (snapshot lifecycle mangment)
+# stop and start and status slm (snapshot lifecycle mangment)
 POST /_slm/stop
 POST /_slm/start
 GET _slm/status
 
--- check how many deleted documents per segment
+# check how many deleted documents per segment
 GET /_cat/segments/indexname?v=true
 
 
--- Reindex
+# Reindex
 POST /_reindex
 {
   "source": {
@@ -484,7 +483,7 @@ POST /_reindex
 }
 
 
--- Selective Reindex Operation
+# Selective Reindex Operation
 POST /_reindex
 {
   "source": {
@@ -501,7 +500,7 @@ POST /_reindex
   }
 }
 
--- reindex data with change name of index
+# reindex data with change name of index
 POST _reindex/?wait_for_completion=false
 {
   "source": {
@@ -516,7 +515,7 @@ POST _reindex/?wait_for_completion=false
   }
 }
 
--- basic search all on index
+# basic search all on index
 get /index_name/_search
 {
   "query": {
@@ -524,7 +523,7 @@ get /index_name/_search
 }
 }
 
--- Searches multiple fields
+# Searches multiple fields
 GET /index_name/_search
 {
   "query": {
@@ -535,7 +534,7 @@ GET /index_name/_search
   }
 }
 
--- Range Query
+# Range Query
 GET /index_name/_search
 {
   "query": {
@@ -549,7 +548,7 @@ GET /index_name/_search
 }
 
 
--- Fuzzy Search - Allows for typos and misspellings.
+# Fuzzy Search - Allows for typos and misspellings.
 GET /index_name/_search
 {
   "query": {
@@ -559,7 +558,7 @@ GET /index_name/_search
   }
 }
 
--- Prefix Search
+# Prefix Search
 GET /index_name/_search
 {
   "query": {
@@ -569,7 +568,7 @@ GET /index_name/_search
   }
 }
 
--- Wildcard Search
+# Wildcard Search
 GET /index_name/_search
 {
   "query": {
@@ -580,11 +579,11 @@ GET /index_name/_search
 }
 
 
--- Count Documents in an Index
+# Count Documents in an Index
 GET /index_name/_count
 
 
--- Basic Aggregation
+# Basic Aggregation
 GET /index_name/_search
 {
   "size": 0,
@@ -595,7 +594,7 @@ GET /index_name/_search
   }
 }
 
--- Date Histogram Aggregation
+# Date Histogram Aggregation
 GET /index_name/_search
 {
   "aggs": {
@@ -609,12 +608,12 @@ GET /index_name/_search
 }
 
 
--- backup and restore
+# backup and restore
 GET _cat/repositories?v
 
 GET _snapshot/repository-name?pretty
 
---create a snapshot for index
+#create a snapshot for index
 PUT _snapshot/repository-name/mysnapshot_name?wait_for_completion=true&pretty=true
 {
 	"indices": "indexname", 
@@ -622,14 +621,14 @@ PUT _snapshot/repository-name/mysnapshot_name?wait_for_completion=true&pretty=tr
 	"include_global_state": false
 }
 
--- Verify the Snapshot
+# Verify the Snapshot
 GET _cat/snapshots/repository-name?v&s=id
 
--- Get the Metadata of the Snapshot: 
+# Get the Metadata of the Snapshot: 
 GET _snapshot/repository-name/mysnapshot_name?pretty
 
 
--- restore shanpshot of index
+# restore shanpshot of index
 POST _snapshot/repository-name/mysnapshot_name/_restore
 {
   "indices": "indexname",
@@ -639,12 +638,15 @@ POST _snapshot/repository-name/mysnapshot_name/_restore
   "rename_replacement": "restored_index_$1"
 }
 
--- change create date of index (for ArchiveData) ,  to calculate epoc time 
+# change create date of index (for ArchiveData) ,  to calculate epoc time 
 PUT indexname-2022.01.01/_settings
 
 {  "index.lifecycle.origination_date" : "epoctime(ms)" }
 
--- example : 
+# example : 
 PUT indexname-2022.01.01/_settings
+
+{  "index.lifecycle.origination_date" : "1672693497000" }
+
 
 {  "index.lifecycle.origination_date" : "1672693497000" }
